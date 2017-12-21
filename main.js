@@ -1,4 +1,4 @@
-//Data attributes
+//-----------------------------------------------------------Data attributes
 
 var elem = document.querySelector("#someTag");
 console.log(elem.dataset);
@@ -6,7 +6,7 @@ elem.dataset.fontFamilly = "Roboto";
 console.log(elem.dataset);
 console.log(elem.dataset.fontFamilly);
 
-//History states
+//------------------------------------------------------------History states
 
 var defaults = {
 	bgcolor: '#fff',
@@ -38,16 +38,31 @@ window.addEventListener('popstate', function (e) {    // при перехода
 	applyStyles ();
 });
 
-
-
-
-
-
-
-
-
 function applyStyles () {
 	someTag.style.backgroundColor = bgcolor.value;
 	someTag.style.color = fcolor.value;
 	someTag.style.fontSize = fsize.value;
 }
+
+//----------------------------------------------------------------local/session storage
+var storage = localStorage;
+
+save.addEventListener("click", function () {
+	storage.data = JSON.stringify({
+		myName: myName.value,
+		age: age.value,
+		about: about.value
+	});
+});
+
+
+load.addEventListener("click", function () {
+	var data = JSON.parse(storage.data || '{}');
+	myName.value  = data.myName || '';
+	age.value   = data.age || '';
+	about.value = data.about || '';
+});
+
+storage.image = "http://elitefon.ru/images/201503/elitefon.ru_38799.jpg";
+
+//img.setAttribute("src", storage.image);
