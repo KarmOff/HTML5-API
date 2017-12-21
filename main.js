@@ -72,11 +72,26 @@ isSessionStorage.addEventListener('change', function (e) {
 	}
 });
 
-
-
-
-
-
 storage.image = "http://elitefon.ru/images/201503/elitefon.ru_38799.jpg";
 
 //img.setAttribute("src", storage.image);
+
+
+//---------------------------------------------------------------------File API дает возможность читать содержимое файла в режиме реального времени
+function readImage (file) {
+	return new Promise(resolve=> {
+		var fileReader = new FileReader();
+		fileReader.readAsDataURL(file);
+		fileReader.addEventListener('load', ()=>{
+			resolve(fileReader.result);
+		});
+	});
+}
+
+photoInput.addEventListener('change', (e)=>{
+	var file = e.target.files[0];
+
+	readImage(file).then(result=>{
+			theImage.src = result;
+	});
+});
