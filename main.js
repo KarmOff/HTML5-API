@@ -19,19 +19,19 @@ document.body.addEventListener('keyup', function (e) {
 });
 
 
-btn.addEventListener('click', function (arguments) {
-	var url = '/' + bgcolor.value + '/' + fcolor.value + '/' + fsize.value;
+btn.addEventListener('click', function () {
+	var url = '/' + bgcolor.value + '/' + fcolor.value + '/' + fsize.value;  //  при сохранении в переменную url просто заносится строка из значений инпутов
 
-	history.pushState({
-		bgcolor: bgcolor.value,
+	history.pushState({   // history.pushState фишка от htnl5 позволяет сохранять "состояния"
+ 		bgcolor: bgcolor.value,
 		fcolor: fcolor.value,
 		fsize: fsize.value
 	}, 'new state', url);
 });
 
 
-window.addEventListener('popstate', function (e) {
-	var state = e.state;
+window.addEventListener('popstate', function (e) {    // при переходах между страницами срабатывает popstate и если были сохранены состояния то они просто вытягиваются
+	var state = e.state;                              // и не потребуется перезагрузки страницы
 	bgcolor.value = state.bgcolor;
 	fcolor.value  = state.fcolor;
 	fsize.value   = state.fsize;
