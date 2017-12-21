@@ -63,6 +63,20 @@ load.addEventListener("click", function () {
 	about.value = data.about || '';
 });
 
+isSessionStorage.addEventListener('change', function (e) {
+	if (isSessionStorage.checked) {
+		storage = sessionStorage;
+		delete localStorage.data;
+	} else {
+		storage = localStorage;
+	}
+});
+
+
+
+
+
+
 storage.image = "http://elitefon.ru/images/201503/elitefon.ru_38799.jpg";
 
 //img.setAttribute("src", storage.image);
